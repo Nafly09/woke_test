@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/woke_test_db
+    username: admin
+    password: admin
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/woke_test_db
+    user: admin
+    password: admin
+    locations: classpath:db/migration
+
+jwt:
+  secret: "minha_chave_nao_tao_secreta"
+  token:
+    validity: 18000
