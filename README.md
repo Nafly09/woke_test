@@ -18,7 +18,7 @@
 
 1 - Tenha o docker e docker compose instalado em sua máquina. (A aplicação possui um compose para facilitar a configuiração do ambiente)
 
-[https://docs.docker.com/desktop/]("Como instalar o docker")
+[Como instalar o docker]("https://docs.docker.com/desktop/")
 
 
 2 - Após garantir que está tudo instalado certinho, só navegar para a pasta do projeto e rodar o seguinte comando not terminal:
