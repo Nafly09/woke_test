@@ -23,11 +23,25 @@ class CompanyService {
     fun assignCompaniesToUser(companyIds: List<Long>, email: String): ResponseEntity<Any> {
         val user: AppUser = userRepository.findAppUserByEmail(email).orElseThrow { UsernameNotFoundException("User not found") }
 
-        val companies = companyRepository.findAllById(companyIds)
+        val companiesToAssign = companyRepository.findAllById(companyIds)
 
-        user.companies.clear()
-        user.companies.addAll(companies)
-        userRepository.save(user)
-        return ResponseEntity.ok().body("Companies assigned successfully to user.")
+        val existingCompanyIds = user.companies.map { it.id }.toSet()
+
+        val newCompanies = companiesToAssign.filterNot { it.id in existingCompanyIds }
+
+        if (newCompanies.isNotEmpty()) {
+            user.companies.addAll(newCompanies)
+            userRepository.save(user)
+        }
+
+        return ResponseEntity.ok(mapOf("message" to "Companies assigned successfully to user."))
+    }
+
+    fun getAvailableCompanies(email: String): ResponseEntity<Any> {
+        val user: AppUser = userRepository.findAppUserByEmail(email).orElseThrow { UsernameNotFoundException("User not found") }
+        val existingCompanyIds = user.companies.map { it.id }.toSet()
+        val companies = companyRepository.findAll()
+        val newCompanies = companies.filterNot { it.id in existingCompanyIds }
+        return ResponseEntity.ok(mapOf("companies" to newCompanies))
     }
 }

@@ -2,6 +2,7 @@ package com.woke.woke_test.config
 import com.woke.woke_test.services.UserService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -37,13 +38,11 @@ class SecurityConfig(
                 .csrf { csrf -> csrf.disable() }
                 .authorizeHttpRequests {
                     it.requestMatchers("/api/sign_up", "/api/login").permitAll()
+                    it.requestMatchers(HttpMethod.OPTIONS).permitAll()
                     it.anyRequest().authenticated()
                 }.exceptionHandling {  }
                 .sessionManagement { session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 }.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
     }
-
-
-
 }
