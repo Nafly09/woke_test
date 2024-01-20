@@ -16,10 +16,7 @@
 
 <p>Caso queira instalar a API para rodar os testes localmente em sua máquina, siga os seguintes passos:</p>
 
-1 - Tenha o docker e docker compose instalado em sua máquina. (A aplicação possui um compose para facilitar a configuiração do ambiente)
-
-[Como instalar o docker]("https://docs.docker.com/desktop/")
-
+1 - Tenha o [docker e docker compose]("https://docs.docker.com/desktop/") instalado em sua máquina. (A aplicação possui um compose para facilitar a configuiração do ambiente)
 
 2 - Após garantir que está tudo instalado certinho, só navegar para a pasta do projeto e rodar o seguinte comando not terminal:
 
