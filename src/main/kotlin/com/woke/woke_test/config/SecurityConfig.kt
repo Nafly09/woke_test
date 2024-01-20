@@ -33,6 +33,7 @@ class SecurityConfig(
     @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         return http
+                .cors { cors -> cors.disable() }
                 .csrf { csrf -> csrf.disable() }
                 .authorizeHttpRequests {
                     it.requestMatchers("/api/sign_up", "/api/login").permitAll()

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 class UserController(
         private val userService: UserService,
         private val companyService: CompanyService,
